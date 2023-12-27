@@ -4,7 +4,7 @@ import {useHttp} from '../../hooks/http.hook';
 export const HearthStoneApi = (locale = 'enUS') => {
   const {request, clearError, process, setProcess} = useHttp();
   const _apiBase = 'https://omgvamp-hearthstone-v1.p.rapidapi.com/';
-  const lang = `locale=${locale}`;
+  // const lang = `locale=${locale}`;
 
   //   const changeStr = (str) => {
   //     if (str != '') {
@@ -34,15 +34,39 @@ export const HearthStoneApi = (locale = 'enUS') => {
   //     return stringReq;
   //   };
 
+  // const getInfo = async () => {
+  //   const res = await request(`${_apiBase}info${lang}`);
+  //   return res;
+  // };
+
   const getInfo = async () => {
-    const res = await request(`${_apiBase}info${lang}`);
+    const res = await request(`${_apiBase}info`);
     return res;
   };
 
+  // const getSingleCard = async (name) => {
+  //   const res = await request(`${_apiBase}cards/${name}?${lang}`);
+  //   return res;
+  // };
+
   const getSingleCard = async (name) => {
-    const res = await request(`${_apiBase}cards/${name}?${lang}`);
+    const res = await request(`${_apiBase}cards/${name}`);
     return res;
   };
+
+  // const getCardByClass = async (
+  //   cardClass,
+  //   // health = null,
+  //   // cost = null,
+  //   // attack = null,
+  // ) => {
+  //   // const strReq = setReqStr(health, cost, attack);
+  //   const res = await request(
+  //     `${_apiBase}cards/classes/${cardClass}?${lang}`,
+  //     //   `${_apiBase}cards/classes/${cardClass}?${strReq}`,
+  //   );
+  //   return res;
+  // };
 
   const getCardByClass = async (
     cardClass,
@@ -52,7 +76,7 @@ export const HearthStoneApi = (locale = 'enUS') => {
   ) => {
     // const strReq = setReqStr(health, cost, attack);
     const res = await request(
-      `${_apiBase}cards/classes/${cardClass}?${lang}`,
+      `${_apiBase}cards/classes/${cardClass}`,
       //   `${_apiBase}cards/classes/${cardClass}?${strReq}`,
     );
     return res;
@@ -60,25 +84,25 @@ export const HearthStoneApi = (locale = 'enUS') => {
 
   const getCardByCost = async (cost) => {
     // const strReq = setReqStr(null, cost, null);
-    const res = await request(`${_apiBase}cards/?cost=${cost}&${lang}`);
+    const res = await request(`${_apiBase}cards/?cost=${cost}`);
     return res;
   };
 
   const getCardByRace = async (race) => {
     // const strReq = setReqStr(null, cost, null);
-    const res = await request(`${_apiBase}cards/races/${race}?${lang}`);
+    const res = await request(`${_apiBase}cards/races/${race}`);
     return res;
   };
 
   const getCardByQuality = async (quality) => {
     // const strReq = setReqStr(null, cost, null);
-    const res = await request(`${_apiBase}cards/qualities/${quality}?${lang}`);
+    const res = await request(`${_apiBase}cards/qualities/${quality}`);
     return res;
   };
 
   const getCardByType = async (type) => {
     // const strReq = setReqStr(null, cost, null);
-    const res = await request(`${_apiBase}cards/types/${type}?${lang}`);
+    const res = await request(`${_apiBase}cards/types/${type}`);
     return res;
   };
 
