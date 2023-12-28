@@ -3,8 +3,9 @@ import './Select.css';
 
 export const Select = ({types, onOptionClick, getCards}) => {
   const onClickHandler = async (e) => {
-    const cards = await getCards(e.target.value);
-    onOptionClick(cards);
+    getCards(e.target.value)
+      .then((res) => onOptionClick(res))
+      .catch(onOptionClick([]));
   };
 
   const render = () => {

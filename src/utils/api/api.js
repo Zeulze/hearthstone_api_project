@@ -49,8 +49,8 @@ export const HearthStoneApi = (locale = 'enUS') => {
   //   return res;
   // };
 
-  const getSingleCard = async (name) => {
-    const res = await request(`${_apiBase}cards/${name}`);
+  const toSearch = async (name) => {
+    const res = await request(`${_apiBase}cards/search/${name}`);
     return res;
   };
 
@@ -84,7 +84,7 @@ export const HearthStoneApi = (locale = 'enUS') => {
 
   const getCardByCost = async (cost) => {
     // const strReq = setReqStr(null, cost, null);
-    const res = await request(`${_apiBase}cards/?cost=${cost}`);
+    const res = await request(`${_apiBase}cards?cost=${cost}`);
     return res;
   };
 
@@ -108,12 +108,13 @@ export const HearthStoneApi = (locale = 'enUS') => {
 
   return {
     getInfo,
-    getSingleCard,
+    toSearch,
     getCardByClass,
     getCardByCost,
     getCardByRace,
     getCardByQuality,
     getCardByType,
+    process,
   };
 };
 

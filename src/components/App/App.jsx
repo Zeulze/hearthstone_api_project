@@ -6,6 +6,8 @@ import {useEffect, useState} from 'react';
 import {languagesTypes} from '../../consts/languages';
 import {Cards} from '../Cards/Cards';
 import {Select} from '../Select/Select';
+import {Input} from '../Input/Input';
+import {Modal} from '../Modal/Modal';
 
 function App() {
   const [dataClass, setDataClass] = useState([]);
@@ -13,6 +15,8 @@ function App() {
   const [raceTypes, setRaceTypes] = useState([]);
   const [qualityTypes, setQualityTypes] = useState([]);
   const [typeTypes, setTypeTypes] = useState([]);
+  const [id, setId] = useState(null);
+  const [isActive, setIsActive] = useState(false);
 
   const service = HearthStoneApi(languagesTypes.en);
 
@@ -32,40 +36,63 @@ function App() {
     setDataClass(() => [...data]);
   };
 
+  const onIdChange = (id) => {
+    setId(() => id);
+  };
+
+  const onActiveChange = (statement) => {
+    setIsActive(() => statement);
+  };
+
   useEffect(() => {
     getMainInfo();
   }, []);
 
+  const element =
+    dataClass.length > 0 ? (
+      <Cards data={dataClass} onActive={onActiveChange} onId={onIdChange} />
+    ) : (
+      <div className='empty'>
+        <span>{'Oops... Cards section is empty...'}</span>
+      </div>
+    );
+
+  const modalElement = id && dataClass[id];
+
   return (
-    <main>
-      <div className='panel'>
-        <div className='select-wrapper'>
-          <Select
-            types={classTypes}
-            onOptionClick={onDataClassChange}
-            getCards={service.getCardByClass}
-          />
-          <Select
-            types={raceTypes}
-            onOptionClick={onDataClassChange}
-            getCards={service.getCardByRace}
-          />
-          <Select
-            types={qualityTypes}
-            onOptionClick={onDataClassChange}
-            getCards={service.getCardByQuality}
-          />
-          <Select
-            types={typeTypes}
-            onOptionClick={onDataClassChange}
-            getCards={service.getCardByType}
-          />
+    <>
+      <main>
+        <div className='panel'>
+          <div className='select-wrapper'>
+            <Input getCards={service.toSearch} onInput={onDataClassChange} />
+          </div>
+          <div className='select-wrapper'>
+            <Select
+              types={classTypes}
+              onOptionClick={onDataClassChange}
+              getCards={service.getCardByClass}
+            />
+            <Select
+              types={raceTypes}
+              onOptionClick={onDataClassChange}
+              getCards={service.getCardByRace}
+            />
+            <Select
+              types={qualityTypes}
+              onOptionClick={onDataClassChange}
+              getCards={service.getCardByQuality}
+            />
+            <Select
+              types={typeTypes}
+              onOptionClick={onDataClassChange}
+              getCards={service.getCardByType}
+            />
+          </div>
         </div>
-      </div>
-      <div className='wrapper-content'>
-        <Cards data={dataClass} />
-      </div>
-    </main>
+        <div className='wrapper-content'>{element}</div>
+      </main>
+      {isActive && <Modal el={modalElement} setIsActive={onActiveChange} />}
+    </>
   );
 }
 
