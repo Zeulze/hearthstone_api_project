@@ -3,7 +3,7 @@ import './Modal.css';
 
 export const Modal = ({el, setIsActive}) => {
   const onclickHandler = (e) => {
-    if (e.target && !e.target.classList.contains('modal')) {
+    if (e.target && e.target.firstChild.children[1]) {
       setIsActive(false);
     }
   };
