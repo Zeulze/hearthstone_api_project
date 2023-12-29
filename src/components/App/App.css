@@ -1,6 +1,6 @@
 main {
   width: 1300px;
-  height: 550px;
+  height: 1000px;
 
   margin: 0 auto;
 
@@ -13,16 +13,17 @@ main {
   flex-direction: column;
   justify-content: space-between;
 
-  margin-top: 175px;
+  margin-top: 210px;
 }
 
 .select-wrapper {
-  margin-top: 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
   width: 1271px;
+
+  margin-bottom: 10px;
 }
 
 .wrapper-content {
@@ -32,18 +33,14 @@ main {
   width: 1245px;
   height: 550px;
 
-  margin: 0 auto;
-
   flex-wrap: wrap;
 
-  overflow-y: scroll;
   overflow-x: hidden;
 
   background-color: #42f5f5;
 
   border: 3px solid #000000;
   border-radius: 30px;
-  position: fixed;
 
   top: 355px;
   left: 310px;
