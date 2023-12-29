@@ -10,6 +10,7 @@ import {Input} from '../Input/Input';
 import {Modal} from '../Modal/Modal';
 
 function App() {
+  //Сори за этот ужас ))
   const [dataClass, setDataClass] = useState([]);
   const [classTypes, setClassTypes] = useState([]);
   const [raceTypes, setRaceTypes] = useState([]);
