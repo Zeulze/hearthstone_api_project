@@ -23,7 +23,7 @@ export const Modal = ({el, setIsActive}) => {
           <div className='stats'>
             {el.attack && <div className='stat'>Attack: {el.attack}</div>}
             {el.health && <div className='stat'>Health: {el.health}</div>}
-            {el.cost != 0 && <div className='stat'>Cost: {el.cost}</div>}
+            {el.cost ? <div className='stat'>Cost: {el.cost}</div> : null}
           </div>
           <div className='stats'>
             {el.playerClass && (
